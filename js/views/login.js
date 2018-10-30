@@ -12,10 +12,11 @@ window.onload = function(){
     txtPassword.value = "";
 
     document.getElementById('btnEntrar').addEventListener('click', function (ev){
-       
-      
-
+        ev.preventDefault();
         if(txtUsuario.value === credencial.usuario && txtPassword.value === credencial.password){
+            console.log("entrou no if");
+            return window.location = '/';
+        }else{
 
         }
 
