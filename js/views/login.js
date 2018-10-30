@@ -15,7 +15,7 @@ window.onload = function(){
         ev.preventDefault();
         if(txtUsuario.value === credencial.usuario && txtPassword.value === credencial.password){
             console.log("entrou no if");
-            return window.location = '/';
+            return window.location = '../';
         }else{
 
         }
