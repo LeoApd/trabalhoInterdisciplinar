@@ -32,7 +32,7 @@ window.onload = function(){
     
             listaOnibus.push(onibus);
 
-            
+            table.innerHTML="";
 
             listaOnibus.forEach(addRow)
 
@@ -43,7 +43,7 @@ window.onload = function(){
                 row += '<td>' + item.nomeRota + '</td>';
                 row += '</tr>';
 
-                table.innerHTML = row;
+                table.innerHTML += row;
             }
 
             txtNumero.value = '';

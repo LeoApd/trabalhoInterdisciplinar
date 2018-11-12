@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous" />
-    <title>Rotas</title>
+    <title>Horário</title>
 
 </head>
 
@@ -16,37 +16,56 @@
         <a class="navbar-brand" style="color:aliceblue">App Rastreamento</a>
     </nav>
     <br />
+    <br />
     <div class="container">
-        <h3>Cadastrar Rotas</h3>
+        <h3>Cadastrar Horário</h3>
         <hr>
         <br>
 
         <form action="">
 
             <div class="row">
-                 <div class="col-12">
+                <div class="col-4">
                     <div class="form-group">
-                        <label for="txtLOnibus">Nome da Rota</label>
-                        <input type="text" class="form-control" id="txtNRota" placeholder="Nome da Rota" name="txtNRota">
+                        <label for="txtLOnibus">Código do Ônibus</label>
+                        <input type="text" class="form-control" id="txtCOnibus" placeholder="Código do Ônibus" name="txtCOnibus">
                     </div>
                 </div>
+                <div class="col-8">
+                        <div class="form-group">
+                            <label for="txtLOnibus">Linha do Ônibus</label>
+                            <input type="text" class="form-control" id="txtLOnibus" placeholder="Linha do Ônibus" name="txtLOnibus">
+                        </div>
+                    </div>
             </div>
             <div class="row">
-                <div class="col-6">
+                <div class="col-4">
                     <div class="form-group">
                         <label for="txtHInicial">Ponto Inicial</label>
                         <input type="text" class="form-control" id="txtPInicial" placeholder="Ponto Inicial" name="txtPInicial">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-2">
+                    <div class="form-group">
+                        <label for="txtHInicial">Horário Inicial</label>
+                        <input type="time" class="form-control" id="txtHInicial" name="txtHInicial">
+                    </div>
+                </div>
+                <div class="col-4">
                     <div class="form-group">
                         <label for="txtPFinal">Ponto Final</label>
                         <input type="text" class="form-control" id="txtPFinal" placeholder="Ponto Final" name="txtPFinal">
                     </div>
                 </div>
+                <div class="col-2">
+                    <div class="form-group">
+                        <label for="txtHFinal">Horário Final</label>
+                        <input type="time" class="form-control" id="txtHFinal" name="txtHFinal">
+                    </div>
+                </div>
             </div>
             <div class="text-right">
-                <button id="btnHorario" type="submit" class="btn btn-dark" style="color:aliceblue">Cadastrar Rotas</button>
+                <button id="btnHorario" type="submit" class="btn btn-dark" style="color:aliceblue">Cadastrar Horário</button>
             </div>
         </form>
         <br/>
@@ -56,10 +75,12 @@
         <table class="table" id="tabela">
             <thead>
                 <tr>
-                    <th>Rotas</th>
+                    <th>Código</th>
+                    <th>Linha</th>
                     <th>Ponto Inicial</th>
+                    <th>Horário Inicial</th>
                     <th>Ponto Final</th>
-                    <th>Mapa</th>
+                    <th>Horário Final</th>
                 </tr>
             </thead>
             <tbody id="tabelaCorpo">
@@ -67,10 +88,12 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th>Rotas</th>
+                    <th>Código</th>
+                    <th>Linha</th>
                     <th>Ponto Inicial</th>
+                    <th>Horário Inicial</th>
                     <th>Ponto Final</th>
-                    <th>Mapa</th>
+                    <th>Horário Final</th>
                 </tr>
             </tfoot>
 
