@@ -1,3 +1,6 @@
+<?php
+    include_once '../dao/OnibusDao.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,18 +19,49 @@
         <a class="navbar-brand" style="color:aliceblue">App Rastreamento</a>
     </nav>
     <br />
-
-
-    
-
     <div class="container">
-        <div id="erro"></div>
+    <?php 
+                
+                $Onibus = new Onibus();
+                $dao = new OnibusDao();
+                if(isset($_POST['gravar'])){
+    
+                    $codigo = $_POST['txtCodOnibus'];
+                    $numero = $_POST['txtNumOnibus'];
+                    $nomeRota = $_POST['txtNomeRota'];
+    
+                    if($codigo == '' && $numero == '' && $nomeRota == ''){
+                        echo '<div class="alert alert-danger" role="alert">
+                                Campos vazio
+                            </div>';
+                    }else{
+
+                        $Onibus->setCodigo($codigo);
+                        $Onibus->setNumero($numero);
+                        $Onibus->setNomeRota($nomeRota);
+
+                        if($dao->save($Onibus)){
+                            echo '<div class="alert alert-success" role="alert">
+                                    Dados Salvos
+                                </div>';
+                            }else{
+                                echo '<div class="alert alert-danger" role="alert">
+                                        Não foi possivel cadastrar os dados;
+                                    </div>';
+                            }
+                    }
+                        
+                }
+    
+            ?>
+
+
 
         <h3>Cadastrar Ônibus</h3>
         <hr>
         <br>
 
-        <form action="">
+        <form method="post">
 
             <div class="row">
                 <div class="col-2">
@@ -52,18 +86,19 @@
                 </div>
             </div>
             <div class="text-right">
-                <button id="btnCadastrar" type="submit" class="btn btn-dark" style="color:aliceblue">Cadastrar Onibus</button>
+            <input type="submit" name="gravar" class="btn btn-success" value="Salvar Onibus" />
             </div>
         </form>
         <br/>
         <br/>
 
         <h3>Lista de Onibus Cadastrado</h3>
-        <hr>
+        
         <br>
         <table class="table" id="tabela">
             <thead>
                 <tr>
+                    <th>id</th>
                     <th>Número</th>
                     <th>Código</th>
                     <th>Nome da Rota</th>
@@ -71,9 +106,24 @@
             </thead>
             <tbody id="tabelaCorpo">
 
+            <?php 
+                $dao = new OnibusDao();
+                foreach ($dao->findAll() as $value){
+            ?>
+                <tr>
+                    <td><?php echo $value['id'];?></td>
+                    <td><?php echo $value['numero'];?></td>
+                    <td><?php echo $value['codigo'];?></td>
+                    <td><?php echo $value['nomeRota'];?></td>
+                </tr>
+            <?php 
+                }
+            ?>
+
             </tbody>
             <tfoot>
                 <tr>
+                    <th>id</th>
                     <th>Número</th>
                     <th>Código</th>
                     <th>Nome da Rota</th>
@@ -83,9 +133,6 @@
         </table>
 
     </div>
-
-    <script src="../js/models/Onibus.js"></script>
-    <script src="../js/views/onibus.js"></script>
 </body>
 
 </html>

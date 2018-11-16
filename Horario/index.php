@@ -1,3 +1,6 @@
+<?php
+    include_once '../dao/HorarioDao.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,16 +21,57 @@
     <br />
     <br />
     <div class="container">
+
+        <?php 
+                
+            $Horario = new Horario();
+            $dao = new HorarioDao();
+            if(isset($_POST['gravar'])){
+    
+                $codigo = $_POST['txtCOnibus'];
+                $linha = $_POST['txtLOnibus'];
+                $poi = $_POST['txtPInicial'];
+                $pof = $_POST['txtPFinal'];
+                $hi = $_POST['txtHInicial'];
+                $hf = $_POST['txtHFinal'];
+    
+                if($codigo == '' && $linha == '' && $poi == '' && $pof == '' && $hi == '' && $hf == ''){
+                    echo '<div class="alert alert-danger" role="alert">
+                            Campos vazio
+                        </div>';
+                }else{
+                    $Horario->setCodigo($codigo);
+                    $Horario->setLinha($linha);
+                    $Horario->setPoi($poi);
+                    $Horario->setPof($pof);
+                    $Horario->setHi($hi);
+                    $Horario->setHf($hf);
+    
+                    if($dao->save($Horario)){
+                        echo '<div class="alert alert-success" role="alert">
+                                Dados Salvos
+                            </div>';
+                        }else{
+                            echo '<div class="alert alert-danger" role="alert">
+                                    Não foi possivel cadastrar os dados;
+                                </div>';
+                            }
+                    }
+                        
+            }
+    
+        ?>
+
         <h3>Cadastrar Horário</h3>
         <hr>
         <br>
 
-        <form action="">
+        <form method="post">
 
             <div class="row">
                 <div class="col-4">
                     <div class="form-group">
-                        <label for="txtLOnibus">Código do Ônibus</label>
+                        <label for="txtCOnibus">Código do Ônibus</label>
                         <input type="text" class="form-control" id="txtCOnibus" placeholder="Código do Ônibus" name="txtCOnibus">
                     </div>
                 </div>
@@ -41,7 +85,7 @@
             <div class="row">
                 <div class="col-4">
                     <div class="form-group">
-                        <label for="txtHInicial">Ponto Inicial</label>
+                        <label for="txtPInicial">Ponto Inicial</label>
                         <input type="text" class="form-control" id="txtPInicial" placeholder="Ponto Inicial" name="txtPInicial">
                     </div>
                 </div>
@@ -65,13 +109,13 @@
                 </div>
             </div>
             <div class="text-right">
-                <button id="btnHorario" type="submit" class="btn btn-dark" style="color:aliceblue">Cadastrar Horário</button>
+            <input type="submit" name="gravar" class="btn btn-success" value="Cadastrar Horiário" />
             </div>
         </form>
         <br/>
         <br/>
         <h3>Horários</h3>
-        <hr>
+        <br>
         <table class="table" id="tabela">
             <thead>
                 <tr>
@@ -84,6 +128,23 @@
                 </tr>
             </thead>
             <tbody id="tabelaCorpo">
+
+            <?php 
+                $dao = new HorarioDao();
+                foreach ($dao->findAll() as $value){
+            ?>
+                <tr>
+                    <td><?php echo $value['codigo'];?></td>
+                    <td><?php echo $value['linha'];?></td>
+                    <td><?php echo $value['poi'];?></td>
+                    <td><?php echo $value['hi'];?></td>
+                    <td><?php echo $value['pof'];?></td>
+                    <td><?php echo $value['hf'];?></td>
+                   
+                </tr>
+            <?php 
+                }
+            ?>
 
             </tbody>
             <tfoot>
@@ -99,8 +160,6 @@
 
         </table>
     </div>
-
-    <script src="js/models/credencias.js"></script>
 </body>
 
 </html>
