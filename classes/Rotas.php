@@ -2,9 +2,18 @@
 
     class Rotas{
 
+        private $id;
         private $nomeRota;
         private $pontoInicial;
         private $pontoFinal;
+
+        public function setId($id){
+            $this->id = $id;
+        }
+
+        public function getId(){
+            return $this->id;
+        }
 
         public function setNomeRota($nomeRota){
             $this->nomeRota = $nomeRota;

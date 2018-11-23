@@ -41,5 +41,24 @@
             return $stmt;
        }
 
+
+       function update($rotas){
+            $con = getConnection();
+            $sql = 'UPDATE rotas SET nomeRota = ?, pontoInicial = ?, pontoFinal = ? WHERE id = ?';    
+            $stmt = $con->prepare($sql);
+                
+            $stmt->bindValue(1, $rotas->getNomeRota());
+            $stmt->bindValue(2, $rotas->getPontoInicial());
+            $stmt->bindValue(3, $rotas->getPontoFinal());
+            $stmt->bindValue(4, $rotas->getId());
+
+            $stmt->execute();
+
+            //var_dump($stmt);
+
+            return $stmt;
+
+        }
+
     }
 ?>

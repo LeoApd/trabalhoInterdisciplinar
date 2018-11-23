@@ -41,5 +41,23 @@
             return $stmt;
        }
 
+       function update($onibus){
+            $con = getConnection();
+            $sql = 'UPDATE onibus SET numero = ?, codigo = ?, nomeRota = ? WHERE id = ?';    
+            $stmt = $con->prepare($sql);
+                
+            $stmt->bindValue(1, $onibus->getNumero());
+            $stmt->bindValue(2, $onibus->getCodigo());
+            $stmt->bindValue(3, $onibus->getNomeRota());
+            $stmt->bindValue(4, $onibus->getId());
+
+            $stmt->execute();
+
+            //var_dump($stmt);
+
+            return $stmt;
+
+       }
+
     }
 ?>
