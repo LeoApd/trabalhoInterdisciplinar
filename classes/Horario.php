@@ -2,6 +2,7 @@
 
     class Horario{
 
+        private $id;
         private $codigo;
         private $linha;
         private $poi;
@@ -9,6 +10,14 @@
         private $hi;
         private $hf;
 
+
+        public function setId($id){
+            $this->id = $id;
+        }
+
+        public function getId(){
+            return $this->id;
+        }
        
         public function setCodigo($codigo){
             $this->codigo = $codigo;

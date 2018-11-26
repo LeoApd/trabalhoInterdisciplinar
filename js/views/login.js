@@ -17,7 +17,7 @@ window.onload = function(){
         ev.preventDefault();
         if(txtUsuario.value === credencial.usuario && txtPassword.value === credencial.password){
             console.log("entrou no if");
-            return window.location = 'Home/index.html';
+            return window.location = 'Home/index.php' ;
         }else{
             var erro = '<div class="alert alert-danger" role="alert">';
             erro +=  'Usuário ou Senha incorreto';

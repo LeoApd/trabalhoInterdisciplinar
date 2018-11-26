@@ -3,5 +3,4 @@ function preencherModal(numero,codigo,nomeRota,id){
     $('#modalCodOnibus').val(codigo);
     $('#modalNomeRota').val(nomeRota);
     $('#id').val(id);
-    
 }

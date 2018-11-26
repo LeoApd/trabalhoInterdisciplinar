@@ -9,6 +9,7 @@ create table rotas(
 );
 
 create table horario(
+	id int primary key auto_increment,
 	codigo varchar(50),
     linha varchar(50),
     poi varchar(40),

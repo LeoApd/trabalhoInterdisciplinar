@@ -177,7 +177,7 @@
                     <td><?php echo $value['nomeRota'];?></td>
                     <td>
                         <button type="button" id="btnEditar" class="btn btn-warning" data-toggle="modal" data-target=".modal" 
-                        onclick="load_modal('<?php echo $value['numero'];?>','<?php echo $value['codigo'];?>','<?php echo $value['nomeRota'];?>','<?php echo $value['id'];?>')">Editar</button>
+                        onclick="preencherModal('<?php echo $value['numero'];?>','<?php echo $value['codigo'];?>','<?php echo $value['nomeRota'];?>','<?php echo $value['id'];?>')">Editar</button>
                     </td>
                     <form action="" method="post">
                         <td>
@@ -236,8 +236,7 @@
     </div>
 
 
-    <!-- Large modal -->
-    
+    <!-- modal -->
     <div class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
